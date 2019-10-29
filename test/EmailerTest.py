@@ -1,8 +1,11 @@
+import sys
+from os import getcwd
+from os import path
+sys.path.append(getcwd())
 import unittest
 from app.Emailer import Emailer
 from config.config import SMTP_CONFIG, EMAIL_CONFIG
-from os import getcwd
-from os import path
+
 
 
 class EmailerTest(unittest.TestCase):
@@ -11,12 +14,12 @@ class EmailerTest(unittest.TestCase):
     emailer = Emailer()
 
     @classmethod
-    def setUpClass(cls, self):
-        self.msg['to'] = ''
-        self.msg['from'] = ''
-        self.msg['subject'] = 'Test mail'
-        self.msg['body'] = 'This is a test email'
-        self.emailer = Emailer(SMTP_CONFIG, EMAIL_CONFIG, self.msg)
+    def setUpClass(cls):
+        cls.msg['to'] = ''
+        cls.msg['from'] = ''
+        cls.msg['subject'] = 'Test mail'
+        cls.msg['body'] = 'This is a test email'
+        cls.emailer = Emailer(SMTP_CONFIG, EMAIL_CONFIG, cls.msg)
 
     def test_set_message_given_plaintext_message_and_pdf_attachment(self):
         self.msg["attachment"] = path.join(getcwd(),"test_assets", "test.pdf")
