@@ -20,9 +20,6 @@ class Emailer:
     def set_user_details(self, user_details):
         self.__user_details = user_details
 
-    def set_msg(self, msg):
-        self.__msg = msg
-
     def get_user_details(self):
         return self.__user_details
 
@@ -58,3 +55,6 @@ class Emailer:
 
         # Add attachment to message and convert message to string
         self.__message.attach(part)
+    
+    def get_message(self):
+        return self.__message
