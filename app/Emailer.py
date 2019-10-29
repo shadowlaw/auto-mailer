@@ -42,14 +42,16 @@ class Emailer:
             with open(msg['attachment'], "rb") as attachment:
                 part = MIMEBase("application", "octet-stream")
                 part.set_payload(attachment.read())
-        except FileNotFoundError:
+        except FileNotFoundError as e:
             print("File does not exist")
+            print(e)
         except IOError:
             print("I/O Error")
-        except KeyError:
-            pass
+        except KeyError as e:
+            print("Error finding key {}".format(e))
+            return
         except Exception as e:
-            print(e)
+            print("General error {}".format(e))
 
         encoders.encode_base64(part)
 
