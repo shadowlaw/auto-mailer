@@ -13,9 +13,12 @@ class Emailer:
     __message = MIMEMultipart()
 
     def __init__(self, smtp_config=dict(), user_details=dict(), msg=dict()):
-        self.__smtpObj = smtplib.SMTP(smtp_config['SMTP_SERVER'], smtp_config['SMTP_PORT'])
-        self.__user_details = user_details
-        self.set_message(msg)
+        if bool(smtp_config):
+            self.__smtpObj = smtplib.SMTP(smtp_config['SMTP_SERVER'], smtp_config['SMTP_PORT'])
+        if bool(user_details):
+            self.__user_details = user_details
+        if bool(msg):
+            self.set_message(msg)
 
     def set_user_details(self, user_details):
         self.__user_details = user_details
@@ -27,6 +30,9 @@ class Emailer:
         return self.__smtpObj.ehlo()
 
     def set_message(self, msg):
+        if not bool(self.get_user_details()):
+            return
+
         self.__message["From"] = msg['from']
         self.__message["To"] = msg['to']
         self.__message["Subject"] = msg['subject']
