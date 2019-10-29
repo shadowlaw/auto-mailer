@@ -12,7 +12,7 @@ class Emailer:
     __user_details = dict()
     __message = MIMEMultipart()
 
-    def __init__(self, smtp_config, user_details, msg):
+    def __init__(self, smtp_config=dict(), user_details=dict(), msg=dict()):
         self.__smtpObj = smtplib.SMTP(smtp_config['SMTP_SERVER'], smtp_config['SMTP_PORT'])
         self.__user_details = user_details
         self.set_message(msg)
