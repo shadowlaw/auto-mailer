@@ -22,13 +22,12 @@ class EmailerTest(unittest.TestCase):
         cls.emailer = Emailer(SMTP_CONFIG, EMAIL_CONFIG, cls.msg)
 
     def test_set_message_given_plaintext_message_and_pdf_attachment(self):
-        self.msg["attachment"] = path.join(getcwd(),"test_assets", "test.pdf")
-        self.emailer.set_message(self.msg)
+        msg = self.msg
+        msg["attachment"] = path.join(getcwd(), "test", "test_assets", "test.pdf")
+        self.emailer.set_message(msg)
         emailer_message = self.emailer.get_message()
-        print(emailer_message)
-        # TODO: Plain text email (failure)
-        # TODO: email with attachment (failure)
-        pass
+        self.assertFalse(emailer_message._payload[2]._headers[3][1] is None)
+
 
 
 if __name__ == '__main__':
