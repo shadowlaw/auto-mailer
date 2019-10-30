@@ -37,6 +37,14 @@ class EmailerTest(unittest.TestCase):
         msg["attachment"] = path.join(getcwd(), "test_assets", "test.pdf")
         
         self.assertRaises(FileNotFoundError, self.emailer.set_message,msg)
+
+    def test_send_message_given_valid_mail_details(self):
+        msg = self.msg
+        msg['to'] = ''
+        msg['from'] = ''
+        msg["attachment"] = path.join(getcwd(), "test", "test_assets", "test.pdf")
+        self.emailer.set_message(msg)
+        self.emailer.send_mail()
         
 
 

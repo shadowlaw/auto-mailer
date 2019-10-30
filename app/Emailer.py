@@ -1,4 +1,4 @@
-import smtplib
+import smtplib, ssl
 import email
 
 from email import encoders
@@ -8,13 +8,13 @@ from email.mime.text import MIMEText
 
 
 class Emailer:
-    __smtpObj = smtplib.SMTP()
+    __smtpObj = dict()
     __user_details = dict()
     __message = MIMEMultipart()
 
     def __init__(self, smtp_config=dict(), user_details=dict(), msg=dict()):
         if bool(smtp_config):
-            self.__smtpObj = smtplib.SMTP(smtp_config['SMTP_SERVER'], smtp_config['SMTP_PORT'])
+            self.__smtpObj = smtp_config
         if bool(user_details):
             self.__user_details = user_details
         if bool(msg):
@@ -68,3 +68,14 @@ class Emailer:
     
     def get_message(self):
         return self.__message
+
+    def send_mail(self):
+        context = ssl.create_default_context()
+        try:
+            with smtplib.SMTP(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"]) as server:
+                server.starttls(context=context)
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, message)
+        except Exception as e:
+            print(e.message)
+        
