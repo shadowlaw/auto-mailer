@@ -27,7 +27,16 @@ class EmailerTest(unittest.TestCase):
         self.emailer.set_message(msg)
         emailer_message = self.emailer.get_message()
         self.assertFalse(emailer_message._payload[2]._headers[3][1] is None)
-
+    
+    def test_set_message_given_plaintext_message_and_incorrect_pdf_attachment_path(self):
+        msg = self.msg
+        msg["attachment"] = path.join(getcwd(), "test", "test_assets", "test.pdf")
+        self.emailer.set_message(msg)
+        emailer_message = self.emailer.get_message()
+        try:
+            emailer_message._payload[2]._headers[3][1]
+        except IndexError:
+            pass
 
 
 if __name__ == '__main__':
