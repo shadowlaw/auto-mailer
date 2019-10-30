@@ -21,22 +21,23 @@ class EmailerTest(unittest.TestCase):
         cls.msg['body'] = 'This is a test email'
         cls.emailer = Emailer(SMTP_CONFIG, EMAIL_CONFIG, cls.msg)
 
+    def setUp(self):
+        try:
+            del self.msg["attachment"]
+        except KeyError:
+            pass
+
     def test_set_message_given_plaintext_message_and_pdf_attachment(self):
         msg = self.msg
         msg["attachment"] = path.join(getcwd(), "test", "test_assets", "test.pdf")
         self.emailer.set_message(msg)
-        emailer_message = self.emailer.get_message()
-        self.assertFalse(emailer_message._payload[2]._headers[3][1] is None)
     
     def test_set_message_given_plaintext_message_and_incorrect_pdf_attachment_path(self):
         msg = self.msg
-        msg["attachment"] = path.join(getcwd(), "test", "test_assets", "test.pdf")
-        self.emailer.set_message(msg)
-        emailer_message = self.emailer.get_message()
-        try:
-            emailer_message._payload[2]._headers[3][1]
-        except IndexError:
-            pass
+        msg["attachment"] = path.join(getcwd(), "test_assets", "test.pdf")
+        
+        self.assertRaises(FileNotFoundError, self.emailer.set_message,msg)
+        
 
 
 if __name__ == '__main__':
