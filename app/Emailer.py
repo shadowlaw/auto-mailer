@@ -11,6 +11,8 @@ class Emailer:
     __smtpObj = dict()
     __user_details = dict()
     __message = MIMEMultipart()
+    __sender = ''
+    __reciever = ''
 
     def __init__(self, smtp_config=dict(), user_details=dict(), msg=dict()):
         if bool(smtp_config):
@@ -32,7 +34,9 @@ class Emailer:
     def set_message(self, msg):
         if not bool(self.get_user_details()):
             return
-
+        
+        self.__sender = msg['from']
+        self.__reciever = msg['to']
         self.__message["From"] = msg['from']
         self.__message["To"] = msg['to']
         self.__message["Subject"] = msg['subject']
@@ -73,9 +77,9 @@ class Emailer:
         context = ssl.create_default_context()
         try:
             with smtplib.SMTP(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"]) as server:
-                server.starttls(context=context)
-                server.login(sender_email, password)
-                server.sendmail(sender_email, receiver_email, message)
+                server.starttls()
+                server.login(self.__user_details["EMAIL_ADDRESS"], self.__user_details["PASSWORD"])
+                server.sendmail(self.__sender, self.__reciever, self.__message.as_string())
         except Exception as e:
-            print(e.message)
-        
+            print(e)
+            raise Exception
