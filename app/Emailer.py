@@ -74,10 +74,8 @@ class Emailer:
         return self.__message
 
     def send_mail(self):
-        context = ssl.create_default_context()
         try:
-            with smtplib.SMTP(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"]) as server:
-                server.starttls()
+            with smtplib.SMTP_SSL(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"]) as server:
                 server.login(self.__user_details["EMAIL_ADDRESS"], self.__user_details["PASSWORD"])
                 server.sendmail(self.__sender, self.__reciever, self.__message.as_string())
         except Exception as e:
