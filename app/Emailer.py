@@ -1,6 +1,7 @@
 import smtplib, ssl
 import email
 
+from os.path import basename
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -64,7 +65,7 @@ class Emailer:
         # Add header as key/value pair to attachment part
         part.add_header(
             "Content-Disposition",
-            f"attachment; filename= {msg['attachment']}",
+            f"attachment; filename= {basename(msg['attachment'])}",
         )
 
         # Add attachment to message and convert message to string
