@@ -45,8 +45,8 @@ class EmailerTest(unittest.TestCase):
     def test_send_message_given_valid_mail_details(self):
         msg = self.msg
         emailer = self.emailer
-        msg['to'] = "shadowdev03@gmail.com"
-        msg['from'] = "shadowdev03@gmail.com"
+        msg['to'] = ""
+        msg['from'] = ""
         msg["body"] = "This is a test email"
         msg["attachment"] = path.join(getcwd(), "test", "test_assets", "test.pdf")
         emailer.set_message(msg)
