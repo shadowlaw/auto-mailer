@@ -50,7 +50,7 @@ class Emailer:
             print("File does not exist: {}".format(e))
             raise e
         except IOError as e:
-            print("I/O Error".format(e))
+            print("I/O Error {}".format(e))
             raise e
         except KeyError as e:
             print("Error finding key {}".format(e))
