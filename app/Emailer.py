@@ -37,9 +37,11 @@ class Emailer:
             return
         
         self.__sender = msg['from']
+        if(type(msg['to']) is list):
+            msg['to'] = ', '.join(msg['to'])
         self.__reciever = msg['to']
-        self.__message["From"] = msg['from']
-        self.__message["To"] = msg['to']
+        self.__message["From"] = self.__sender
+        self.__message["To"] = self.__reciever
         self.__message["Subject"] = msg['subject']
         self.__message.attach(MIMEText(msg['body'], "plain"))
 
