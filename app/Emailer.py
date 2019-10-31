@@ -32,7 +32,7 @@ class Emailer:
         return self.__smtpObj.ehlo()
 
     def set_message(self, msg):
-        if not bool(self.get_user_details()):
+        if not bool(self.get_user_details()) or not bool(msg):
             return
         
         self.__sender = msg['from']
