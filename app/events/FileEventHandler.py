@@ -19,5 +19,19 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
 
         self.process(event)
 
+    @property
+    def regex(self):
+        return self.FILE_EXTS
+
+    @regex.setter
+    def regex(self, FILE_EXTS):
+        if type(FILE_EXTS) != list:
+            raise TypeError("TypeError: {} is not of tpye list".format(FILE_EXTS))
+
+        if len(FILE_EXTS) == 0:
+            return
+        
+        self.FILE_EXTS = FILE_EXTS
+
     @abstractclassmethod
     def process(self, event):pass
