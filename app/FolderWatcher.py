@@ -2,13 +2,13 @@ import sys
 import time
 
 from watchdog.observers import Observer
-from events import FileEventHandeler
+from .events.FileEventHandler import FileEventHandler
 
 class FolderWatcher:
 
     def __init__(self, path):
         self.__path = path
-        self.__event_handler = FileEventHandeler()
+        self.__event_handler = FileEventHandler()
         self.__event_observer = Observer()
 
     def run(self):
@@ -24,7 +24,7 @@ class FolderWatcher:
         self.__schedule()
         self.__event_observer.start()
 
-    def stop(stop):
+    def stop(self):
         self.__event_observer.stop()
         self.__event_observer.join()
     
