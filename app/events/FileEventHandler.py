@@ -1,10 +1,11 @@
 from os.path import getsize
 from time import sleep
+from abc import ABC, abstractclassmethod
 
 from watchdog.events import RegexMatchingEventHandler
 
-class FileEventHandler(RegexMatchingEventHandler):
-    FILE_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
+class FileEventHandler(RegexMatchingEventHandler, ABC):
+    FILE_EXTS = [r".*"]
 
     def __init__(self):
         super().__init__(self.FILE_EXTS)
@@ -18,5 +19,5 @@ class FileEventHandler(RegexMatchingEventHandler):
 
         self.process(event)
 
-    def process(self, event):
-        print(event.src_path)
+    @abstractclassmethod
+    def process(self, event):pass
