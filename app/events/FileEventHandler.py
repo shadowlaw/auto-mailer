@@ -1,5 +1,5 @@
 from os.path import getsize
-import time
+from time import sleep
 
 from watchdog.events import RegexMatchingEventHandler
 
@@ -14,7 +14,7 @@ class FileEventHandler(RegexMatchingEventHandler):
         
         while file_Size != getsize(event.src_path):
             file_Size = getsize(event.src_path)
-            time.sleep(1)
+            sleep(1)
 
         self.process(event)
 
