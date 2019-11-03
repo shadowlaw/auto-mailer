@@ -2,7 +2,7 @@ from os import path, getcwd
 
 # FILE CONFIG
 BASE_PATH = getcwd()
-WATCH_PATH = path.join(BASE_PATH, 'dev')
+WATCH_PATH = path.join(BASE_PATH, 'test', 'test_assets','watch_folder')
 
 # LOGGING CONFIG
 LOG_LOCATION = path.join(BASE_PATH, 'dev', 'logs')
