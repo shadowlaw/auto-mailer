@@ -26,7 +26,7 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
     @regex.setter
     def regex(self, FILE_EXTS):
         if type(FILE_EXTS) != list:
-            raise TypeError("TypeError: {} is not of tpye list".format(FILE_EXTS))
+            raise TypeError("TypeError: {} is of type {}, not list".format(FILE_EXTS, type(FILE_EXTS)))
 
         if len(FILE_EXTS) == 0:
             return
