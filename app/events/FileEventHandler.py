@@ -1,9 +1,10 @@
 import os
+import time
 
 from watchdog.events import RegexMatchingEventHandler
 
 class FileEventHandler(RegexMatchingEventHandler):
-    FILE_EXTS = [r"\d{4,4}-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
+    FILE_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
 
     def __init__(self):
         super().__init__(self.FILE_EXTS)
