@@ -11,13 +11,15 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
         super().__init__(self.FILE_EXTS)
 
     def on_created(self, event):
+        print("Detected file {}".format(event.src_path))
         file_Size = -1
         
         while file_Size != getsize(event.src_path):
             file_Size = getsize(event.src_path)
             sleep(1)
-
+        print("Processing file: {}".format(event.src_path))
         self.process(event)
+        print("Processed file: {}".format(event.src_path))
 
     @property
     def regex(self):
