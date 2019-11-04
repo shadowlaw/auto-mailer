@@ -1,6 +1,6 @@
 {
-    "To": [""],
-    "From": "",
-    "Sunject": "",
-    "Body": ""
+    "to": [""],
+    "from": "",
+    "subject": "",
+    "body": ""
 }
