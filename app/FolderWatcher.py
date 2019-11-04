@@ -2,12 +2,13 @@ import time
 
 from watchdog.observers import Observer
 from .events.DefaultFileEventHandler import DefaultFileEventHandler
+from app.app import APP_CONFIG
 
 class FolderWatcher:
 
     def __init__(self, path):
         self.__path = path
-        self.__event_handler = DefaultFileEventHandler()
+        self.__event_handler = DefaultFileEventHandler(APP_CONFIG["WATCHER_CONFIG"]["WATCH_EXTS"])
         self.__event_observer = Observer()
 
     def run(self):
