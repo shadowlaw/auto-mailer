@@ -3,6 +3,7 @@ from os import path, getcwd
 # FILE CONFIG
 BASE_PATH = getcwd()
 WATCH_PATH = path.join(BASE_PATH, 'test', 'test_assets','watch_folder')
+WATCH_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
 
 # LOGGING CONFIG
 LOG_LOCATION = path.join(BASE_PATH, 'dev', 'logs')
@@ -29,6 +30,7 @@ APP_CONFIG['SMTP_CONFIG'] = SMTP_CONFIG
 APP_CONFIG['EMAIL_CONFIG'] = EMAIL_CONFIG
 
 WATCHER_CONFIG['WATCH_PATH'] = WATCH_PATH
+WATCHER_CONFIG['WATCH_EXTS'] = WATCH_EXTS
 
 LOGGING_CONFIG['LOG_LOCATION'] = LOG_LOCATION
 LOGGING_CONFIG['DEFAULT_LOG_LEVEL'] = DEFAULT_LOG_LEVEL
@@ -38,4 +40,4 @@ SMTP_CONFIG['SMTP_PORT'] = SMTP_PORT
 
 EMAIL_CONFIG['EMAIL_ADDRESS'] = EMAIL_ADDRESS
 EMAIL_CONFIG['PASSWORD'] = PASSWORD
-EMAIL_CONFIG['MAIL_DATA_PATH'] = path.join(getcwd(),'test', 'test_assets', 'message_data', 'email', 'test_email.json')
+EMAIL_CONFIG['MAIL_DATA_PATH'] = MAIL_DATA_PATH
