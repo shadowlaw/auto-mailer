@@ -28,7 +28,7 @@ class DefaultFileEventHandler(FileEventHandler):
             print("Unable to read file as location: {}".format(e))
             return
 
-        msg_data["attachment"] = APP_CONFIG["EMAIL_CONFIG"]["MAIL_DATA_PATH"]
+        msg_data["attachment"] = event.src_path
         try:
             emailer = Emailer(APP_CONFIG["SMTP_CONFIG"], APP_CONFIG["EMAIL_CONFIG"], msg_data)
             emailer.send_mail()
