@@ -21,12 +21,16 @@ class FolderWatcher:
             self.stop()
 
     def start(self):
+        print("Watcher Starting")
         self.__schedule()
         self.__event_observer.start()
+        print("Watcher Started")
 
     def stop(self):
+        print("\nWatcher Stopping")
         self.__event_observer.stop()
         self.__event_observer.join()
+        print("Watcher Stopped")
     
     def __schedule(self):
         self.__event_observer.schedule(self.__event_handler, self.__path, recursive=False)
