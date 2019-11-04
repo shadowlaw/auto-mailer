@@ -38,3 +38,4 @@ SMTP_CONFIG['SMTP_PORT'] = SMTP_PORT
 
 EMAIL_CONFIG['EMAIL_ADDRESS'] = EMAIL_ADDRESS
 EMAIL_CONFIG['PASSWORD'] = PASSWORD
+EMAIL_CONFIG['MAIL_DATA_PATH'] = path.join(getcwd(),'test', 'test_assets', 'message_data', 'email', 'test_email.json')
