@@ -16,6 +16,7 @@ SMTP_PORT = 465  # SSL Port
 # EMAIL CONFIG
 EMAIL_ADDRESS = ''
 PASSWORD = ''
+MAIL_DATA_PATH = path.join(getcwd(),'test', 'test_assets', 'message_data', 'email', 'test_email.json')
 
 # Adding properties to config dictionary
 APP_CONFIG = dict()
