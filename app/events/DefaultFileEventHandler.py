@@ -32,6 +32,8 @@ class DefaultFileEventHandler(FileEventHandler):
         try:
             emailer = Emailer(APP_CONFIG["SMTP_CONFIG"], APP_CONFIG["EMAIL_CONFIG"], msg_data)
             emailer.send_mail()
+            del emailer
+            del msg_data
         except KeyError as e:
             print("Unable to locate key: {}".format(e))
         except Exception as e:
