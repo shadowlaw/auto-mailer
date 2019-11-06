@@ -34,5 +34,8 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
         
         self.FILE_EXTS = FILE_EXTS
 
+    def __is_list(self, obj):
+        return type(obj) == list
+        
     @abstractclassmethod
     def process(self, event):pass
