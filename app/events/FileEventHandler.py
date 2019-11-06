@@ -7,6 +7,8 @@ from watchdog.events import RegexMatchingEventHandler
 class FileEventHandler(RegexMatchingEventHandler, ABC):
 
     def __init__(self, FILE_EXTS = [r".*"]):
+        if not self.__is_list(FILE_EXTS):
+            raise TypeError("TypeError: {} is of type {}, not list".format(FILE_EXTS, type(FILE_EXTS)))
         super().__init__(FILE_EXTS)
 
     def on_created(self, event):
