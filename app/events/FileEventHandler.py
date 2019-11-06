@@ -21,6 +21,10 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
         self.process(event)
         print("Processed file: {}".format(event.src_path))
  
+    @property
+    def regexes(self):
+        return self._regexes
+    
     @regexes.setter
     def regexes(self, FILE_EXTS):
         if type(FILE_EXTS) != list:
