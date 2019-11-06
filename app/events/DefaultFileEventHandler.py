@@ -7,8 +7,10 @@ class DefaultFileEventHandler(FileEventHandler):
 
     def __init__(self, FILE_EXTS=None):
         if FILE_EXTS is not None:
-            self.regex = FILE_EXTS
-        super().__init__()
+            super().__init__(FILE_EXTS)
+        else:
+            super().__init__()
+        
 
     def process(self, event):
 
