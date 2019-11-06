@@ -1,6 +1,7 @@
 from os.path import getsize
 from time import sleep
 from abc import ABC, abstractclassmethod
+from re import compile, I
 
 from watchdog.events import RegexMatchingEventHandler
 
@@ -33,7 +34,7 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
         if len(FILE_EXTS) == 0:
             return
         
-        self._regexes = FILE_EXTS
+        self._regexes = [compile(r, I) for r in FILE_EXTS]
 
     @abstractclassmethod
     def process(self, event):pass
