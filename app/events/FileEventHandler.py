@@ -5,10 +5,9 @@ from abc import ABC, abstractclassmethod
 from watchdog.events import RegexMatchingEventHandler
 
 class FileEventHandler(RegexMatchingEventHandler, ABC):
-    FILE_EXTS = [r".*"]
 
-    def __init__(self):
-        super().__init__(self.FILE_EXTS)
+    def __init__(self, FILE_EXTS = [r".*"]):
+        super().__init__(FILE_EXTS)
 
     def on_created(self, event):
         print("Detected file {}".format(event.src_path))
