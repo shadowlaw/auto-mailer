@@ -26,7 +26,7 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
 
     @regex.setter
     def regex(self, FILE_EXTS):
-        if type(FILE_EXTS) != list:
+        if not self.__is_list(FILE_EXTS):
             raise TypeError("TypeError: {} is of type {}, not list".format(FILE_EXTS, type(FILE_EXTS)))
 
         if len(FILE_EXTS) == 0:
