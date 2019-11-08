@@ -1,16 +1,16 @@
 import logging
 
-class Logger(logging):
+class Logger:
 
-    def __init__(self, name, folder, loglevel=INFO, loggingtype=1):
-        self.filename = name
+    def __init__(self, name, folder, message_logged, loglevel=INFO, loggingtype=1):
+        self.name = name
         self.folder_name = folder
         self.log_level = loglevel
         self.logging_type = loggingtype
+        self.message = message_logged
 
-    def logged_type(self):
-        while logging_type == 1:
-            logging.basicConfig(filename ='{}'.format(self.filename))
-            if logging_type != 1:
+        logging.getLogger(name=None)
 
+    def __name__(self):
+        return logging.basicConfig(format="%(name)")
 
