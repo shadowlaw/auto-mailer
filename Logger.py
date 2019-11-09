@@ -9,7 +9,7 @@ class Logger:
         self.logging_type = loggingtype
         self.message = message_logged
 
-        logging.getLogger(name=None)
+        logging.getLogger(format = "%(asctime)s:%(name)s:%(folder_name)s:%(loglevel)s:%(message)s")
 
     def __name__(self):
         return logging.basicConfig(format="%(name)")
