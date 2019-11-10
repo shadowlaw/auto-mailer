@@ -8,9 +8,6 @@ file.setFormatter(file_formatter)
 class Logger:
 
     def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1):
-        self.name = name
-        self.folder_name = folder
-        self.log_level = loglevel
         self.logging_type = loggingtype
 
         this_log = logging.getLogger(name)
