@@ -10,6 +10,15 @@ class Logger:
         self.logger = logging.getLogger(name)
         self.logger.setLevel(loglevel)
 
+    def set_handler(self, loggingtype):
+        if loggingtype == 0:
+            self.set_file_hendler()
+        elif loggingtype ==  1:
+            self.set_steam_handler()
+        elif loggingtype == 2:
+            self.set_steam_handler()
+            self.set_file_hendler()
+
     @property
     def formatter(self):
         return self.formatter
