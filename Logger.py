@@ -30,12 +30,12 @@ class Logger:
     def set_steam_handler(self):
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(self.formatter)
-        self.logger.addHandler(self.stream_handler)
+        self.logger.addHandler(stream_handler)
 
     def set_file_hendler(self):
-        stream_handler = logging.FileHandler(self.log_location)
-        stream_handler.setFormatter(self.formatter)
-        self.logger.addHandler(self.stream_handler) 
+        file_handler = logging.FileHandler(self.log_location)
+        file_handler.setFormatter(self.formatter)
+        self.logger.addHandler(file_handler)
 
     def __str__(self):
         return '{}, {}, {}, {}, {}'.format(self.name, self.folder_name, self.log_level,self.logging_type, self.logging_type )
