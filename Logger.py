@@ -2,7 +2,7 @@ import logging
 
 class Logger:
 
-    def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1, format = "%(asctime)s:%(name)s:%(folder_name)s:%(loglevel)s:%(message)"):
+    def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1, format = "%(levelname)s:%(asctime)s:%(name)s:%(funcName)s:%(message)s"):
         self.logging_type = loggingtype
         self.log_location = folder
         self.logging_type = loggingtype
@@ -12,6 +12,8 @@ class Logger:
 
         self.log = logging.getLogger(name)
         self.log.setLevel(loglevel)
+        self.formatter = format
+        self.set_handler(loggingtype)
 
     def set_handler(self, loggingtype):
         if loggingtype == 0:
@@ -24,11 +26,11 @@ class Logger:
 
     @property
     def formatter(self):
-        return self.formatter
+        return self.formatter_obj
     
     @formatter.setter
     def formatter(self, format):
-        self.formatter = logging.Formatter(self.format)
+        self.formatter_obj = logging.Formatter(self.format)
 
     def set_steam_handler(self):
         stream_handler = logging.StreamHandler()
