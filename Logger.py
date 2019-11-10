@@ -14,5 +14,3 @@ class Logger:
         return '{}, {}, {}, {}, {}'.format(self.name, self.folder_name, self.log_level,self.logging_type, self.logging_type )
 
 
-emp_1 = Logger('John','testfile','Debug','Pizza delivered','1')
-emp_2 = Logger('Corey','testfile','Warning','Cheese','1')
