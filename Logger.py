@@ -16,9 +16,8 @@ class Logger:
         this_log = logging.getLogger(name)
         this_log.addHandler(file)
 
-    @property
-    def __name__(self):
-        return '{}, {}, {}, {}, {}'.format(self.name, self.folder_name, self.log_level,self.logging_type, self.message, self.logging_type )
+    def __str__(self):
+        return '{}, {}, {}, {}, {}'.format(self.name, self.folder_name, self.log_level,self.logging_type, self.logging_type )
 
 
 emp_1 = Logger('John','testfile','Debug','Pizza delivered','1')
