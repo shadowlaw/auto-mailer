@@ -1,10 +1,5 @@
 import logging
 
-file_formatter = logging.Formatter("%(asctime)s:%(name)s:%(folder_name)s:%(loglevel)s:%(message)")
-
-file = logging.FileHandler('test.log')
-file.setFormatter(file_formatter)
-
 class Logger:
 
     def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1):
