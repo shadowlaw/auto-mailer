@@ -18,6 +18,11 @@ class Logger:
     def formatter(self, format):
         self.formatter = logging.Formatter(self.format)
 
+    def set_steam_handler(self):
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(self.formatter)
+        self.logger.addHandler(self.stream_handler)
+
     def __str__(self):
         return '{}, {}, {}, {}, {}'.format(self.name, self.folder_name, self.log_level,self.logging_type, self.logging_type )
 
