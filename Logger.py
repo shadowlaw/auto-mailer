@@ -4,6 +4,8 @@ class Logger:
 
     def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1, format = "%(asctime)s:%(name)s:%(folder_name)s:%(loglevel)s:%(message)"):
         self.logging_type = loggingtype
+        self.log_location = folder
+        self.logging_type = loggingType
 
         this_log = logging.getLogger(name)
         this_log.addHandler(file)
