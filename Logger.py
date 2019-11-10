@@ -2,7 +2,7 @@ import logging
 
 class Logger:
 
-    def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1):
+    def __init__(self, folder, name = __name__, loglevel=logging.INFO, loggingtype=1, format = "%(asctime)s:%(name)s:%(folder_name)s:%(loglevel)s:%(message)"):
         self.logging_type = loggingtype
 
         this_log = logging.getLogger(name)
