@@ -7,8 +7,8 @@ class Logger:
         self.log_location = folder
         self.logging_type = loggingType
 
-        this_log = logging.getLogger(name)
-        this_log.addHandler(file)
+        self.logger = logging.getLogger(name)
+        self.logger.setLevel(loglevel)
 
     def __str__(self):
         return '{}, {}, {}, {}, {}'.format(self.name, self.folder_name, self.log_level,self.logging_type, self.logging_type )
