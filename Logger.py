@@ -10,8 +10,8 @@ class Logger:
         self.name = name
         self.loglevel = loglevel
 
-        self.log = logging.getLogger(name)
-        self.log.setLevel(loglevel)
+        self.__log = logging.getLogger(name)
+        self.__log.setLevel(loglevel)
         self.formatter = format
         self.set_handler(loggingtype)
 
@@ -25,6 +25,10 @@ class Logger:
             self.set_file_hendler()
 
     @property
+    def log(self):
+        return self.__log
+        
+    @property
     def formatter(self):
         return self.formatter_obj
     
@@ -35,12 +39,12 @@ class Logger:
     def set_steam_handler(self):
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(self.formatter)
-        self.log.addHandler(stream_handler)
+        self.__log.addHandler(stream_handler)
 
     def set_file_hendler(self):
         file_handler = logging.FileHandler(self.log_location)
         file_handler.setFormatter(self.formatter)
-        self.log.addHandler(file_handler)
+        self.__log.addHandler(file_handler)
 
     def __str__(self):
         return '{}, {}, {}, {}, {}'.format(self.name, self.log_location, self.loglevel,self.logging_type, self.logging_type )
