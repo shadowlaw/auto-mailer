@@ -9,11 +9,6 @@ from email.mime.text import MIMEText
 
 
 class Emailer:
-    __smtpObj = dict()
-    __user_details = dict()
-    __message = MIMEMultipart()
-    __sender = ''
-    __reciever = ''
 
     def __init__(self, smtp_config=dict(), user_details=dict(), msg=dict()):
         if bool(smtp_config):
@@ -40,6 +35,7 @@ class Emailer:
         if(type(msg['to']) is list):
             msg['to'] = ', '.join(msg['to'])
         self.__reciever = msg['to']
+        self.__message = MIMEMultipart()
         self.__message["From"] = self.__sender
         self.__message["To"] = self.__reciever
         self.__message["Subject"] = msg['subject']
