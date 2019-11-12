@@ -1,4 +1,5 @@
 from os import path, getcwd
+import logging
 
 # FILE CONFIG
 BASE_PATH = getcwd()
@@ -7,7 +8,7 @@ WATCH_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
 
 # LOGGING CONFIG
 LOG_LOCATION = path.join(BASE_PATH, 'dev', 'logs')
-DEFAULT_LOG_LEVEL = 'INFO'
+DEFAULT_LOG_LEVEL = logging.INFO
 
 # SMTP SERVER CONFIG
 SMTP_SERVER = 'smtp.gmail.com'
