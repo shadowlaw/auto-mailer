@@ -3,11 +3,11 @@ import logging
 
 # FILE CONFIG
 BASE_PATH = getcwd()
-WATCH_PATH = path.join(BASE_PATH, 'test', 'test_assets','watch_folder')
+WATCH_PATH = path.join(BASE_PATH)
 WATCH_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
 
 # LOGGING CONFIG
-LOG_LOCATION = path.join(BASE_PATH, 'dev', 'logs')
+LOG_LOCATION = path.join(BASE_PATH, 'logs')
 DEFAULT_LOG_LEVEL = logging.INFO
 
 # SMTP SERVER CONFIG
@@ -17,7 +17,7 @@ SMTP_PORT = 465  # SSL Port
 # EMAIL CONFIG
 EMAIL_ADDRESS = ''
 PASSWORD = ''
-MAIL_DATA_PATH = path.join(getcwd(),'test', 'test_assets', 'message_data', 'email', 'test_email.json')
+MAIL_DATA_PATH = path.join(getcwd(),'app', 'assets', 'message_data', 'email', 'email.json')
 
 # Adding properties to config dictionary
 APP_CONFIG = dict()
