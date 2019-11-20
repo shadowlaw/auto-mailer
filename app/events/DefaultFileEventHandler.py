@@ -8,7 +8,7 @@ from config.config import LOGGING_CONFIG
 class DefaultFileEventHandler(FileEventHandler):
 
     def __init__(self, FILE_EXTS=None):
-        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'])
+        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'], name=__name__)
         self.logger.log.info("DefaultFileHandler initializing")
         
         if FILE_EXTS is not None:
