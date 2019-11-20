@@ -7,7 +7,7 @@ WATCH_PATH = path.join(BASE_PATH)
 WATCH_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
 
 # LOGGING CONFIG
-LOG_LOCATION = path.join(BASE_PATH, 'logs')
+LOG_LOCATION = path.join(BASE_PATH, 'app','logs', 'app_log.log')
 DEFAULT_LOG_LEVEL = logging.INFO
 
 # SMTP SERVER CONFIG
