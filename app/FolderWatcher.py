@@ -9,7 +9,7 @@ from config.config import LOGGING_CONFIG
 class FolderWatcher:
 
     def __init__(self, path):
-        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'])
+        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'], name=__name__)
         self.logger.log.info("Watcher initialized")
         self.__path = path
         self.__event_handler = DefaultFileEventHandler(APP_CONFIG["WATCHER_CONFIG"]["WATCH_EXTS"])
