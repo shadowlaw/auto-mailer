@@ -1,4 +1,4 @@
-from config.config import APP_CONFIG
+from app import APP_CONFIG
 from app.FolderWatcher import FolderWatcher
 
 def run():

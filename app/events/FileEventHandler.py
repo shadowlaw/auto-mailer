@@ -3,7 +3,7 @@ from time import sleep
 from abc import ABC, abstractclassmethod
 from re import compile, I
 from ..Logger import Logger
-from config.config import LOGGING_CONFIG
+from app import LOGGING_CONFIG
 
 from watchdog.events import RegexMatchingEventHandler
 
