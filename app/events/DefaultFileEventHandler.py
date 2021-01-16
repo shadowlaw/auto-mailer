@@ -1,9 +1,9 @@
 from .FileEventHandler import FileEventHandler
 from ..Emailer import Emailer
-from app.app import APP_CONFIG
+from app import APP_CONFIG
 from json import load
 from ..Logger import Logger
-from config.config import LOGGING_CONFIG
+from app import LOGGING_CONFIG
 
 class DefaultFileEventHandler(FileEventHandler):
 

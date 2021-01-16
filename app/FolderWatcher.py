@@ -2,9 +2,9 @@ import time
 
 from watchdog.observers import Observer
 from .events.DefaultFileEventHandler import DefaultFileEventHandler
-from app.app import APP_CONFIG
+from app import APP_CONFIG
 from app.Logger import Logger
-from config.config import LOGGING_CONFIG
+from app import LOGGING_CONFIG
 
 class FolderWatcher:
 
