@@ -3,14 +3,14 @@ from time import sleep
 from abc import ABC, abstractclassmethod
 from re import compile, I
 from ..Logger import Logger
-from app import LOGGING_CONFIG
+from app import APP_CONFIG
 
 from watchdog.events import RegexMatchingEventHandler
 
 class FileEventHandler(RegexMatchingEventHandler, ABC):
 
     def __init__(self, FILE_EXTS = [r".*"]):
-        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'], name=__name__)
+        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], name=__name__)
 
         if not self.__is_list(FILE_EXTS):
             raise TypeError("TypeError: {} is of type {}, not list".format(FILE_EXTS, type(FILE_EXTS)))
