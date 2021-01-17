@@ -4,12 +4,12 @@ from watchdog.observers import Observer
 from .events.DefaultFileEventHandler import DefaultFileEventHandler
 from app import APP_CONFIG
 from app.Logger import Logger
-from app import LOGGING_CONFIG
+from app import APP_CONFIG
 
 class FolderWatcher:
 
     def __init__(self, path):
-        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'], name=__name__)
+        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], name=__name__)
         self.logger.log.info("Watcher initialized")
         self.__path = path
         self.__event_handler = DefaultFileEventHandler(APP_CONFIG["WATCHER_CONFIG"]["WATCH_EXTS"])

@@ -1,45 +1,27 @@
-from os import path, getcwd
+from os import path, getcwd, mkdir
+from .utils import yml
 import logging
 
-# FILE CONFIG
-BASE_PATH = getcwd()
-WATCH_PATH = path.join(BASE_PATH, "watch-folder")
-WATCH_EXTS = [r".*\d{4,4}\-\d{2,2}\-\d{2,2}\-[A-Za-z]*\.pdf$"]
+user_conf = yml.read_yaml_file(
+        path.normpath(
+            path.join(getcwd(), "app/config/user_conf.yaml")
+        )
+    )
 
-# LOGGING CONFIG
-LOG_LOCATION = path.join(BASE_PATH, 'app', 'logs', 'app_log.log')
-DEFAULT_LOG_LEVEL = logging.INFO
+sys_conf = yml.read_yaml_file(
+        path.normpath(
+            path.join(getcwd(), "app/config/system_conf.yaml")
+        )
+    )
 
-# SMTP SERVER CONFIG
-SMTP_SERVER = 'smtp.google.com'
-SMTP_PORT = 465  # SSL Port
+sys_conf['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'] = getattr(logging, sys_conf['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'].upper(), 20)
 
-# EMAIL CONFIG
-EMAIL_ADDRESS = ''
-PASSWORD = ''
-MAIL_DATA_PATH = path.join(getcwd(), 'app', 'assets', 'message_data', 'email', 'email.json')
+if not path.exists(sys_conf['LOGGING_CONFIG']['LOG_LOCATION']):
+    mkdir(path.dirname(sys_conf['LOGGING_CONFIG']['LOG_LOCATION']))
+    with open(sys_conf['LOGGING_CONFIG']['LOG_LOCATION'], 'w'):
+        pass
+
 
 # Adding properties to config dictionary
-APP_CONFIG = dict()
-WATCHER_CONFIG = dict()
-LOGGING_CONFIG = dict()
-SMTP_CONFIG = dict()
-EMAIL_CONFIG = dict()
-
-APP_CONFIG['WATCHER_CONFIG'] = WATCHER_CONFIG
-APP_CONFIG['LOGGING_CONFIG'] = LOGGING_CONFIG
-APP_CONFIG['SMTP_CONFIG'] = SMTP_CONFIG
-APP_CONFIG['EMAIL_CONFIG'] = EMAIL_CONFIG
-
-WATCHER_CONFIG['WATCH_PATH'] = WATCH_PATH
-WATCHER_CONFIG['WATCH_EXTS'] = WATCH_EXTS
-
-LOGGING_CONFIG['LOG_LOCATION'] = LOG_LOCATION
-LOGGING_CONFIG['DEFAULT_LOG_LEVEL'] = DEFAULT_LOG_LEVEL
-
-SMTP_CONFIG['SMTP_SERVER'] = SMTP_SERVER
-SMTP_CONFIG['SMTP_PORT'] = SMTP_PORT
-
-EMAIL_CONFIG['EMAIL_ADDRESS'] = EMAIL_ADDRESS
-EMAIL_CONFIG['PASSWORD'] = PASSWORD
-EMAIL_CONFIG['MAIL_DATA_PATH'] = MAIL_DATA_PATH
+APP_CONFIG = user_conf
+APP_CONFIG.update(sys_conf)
