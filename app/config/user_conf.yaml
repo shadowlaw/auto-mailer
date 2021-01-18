@@ -1,13 +1,12 @@
 WATCHER_CONFIG:
-  WATCH_EXTS:
-    - .* #all files in the specified watch folder
-  WATCH_PATH: watch-folder
+  EVENT_GROUPS:
+    - WATCH_EXTS:
+        - .* #all files in the specified watch folder
+      WATCH_PATH: watch-folder
+      MAIL_DATA_PATH: app/assets/message_data/email/email.json
 SMTP_CONFIG:
   SMTP_SERVER: smtp.google.com
   SMTP_PORT: 465 #SSL PORT
 EMAIL_CONFIG:
   EMAIL_ADDRESS: ~ # your email address
   PASSWORD: ~ # your password
-  MAIL_DATA_PATH: app/assets/message_data/email/email.json
-
-

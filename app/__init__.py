@@ -1,14 +1,14 @@
 from os import path, getcwd, mkdir
-from .utils import yml
+from .utils import file_manager
 import logging
 
-user_conf = yml.read_yaml_file(
+user_conf = file_manager.read_yaml_file(
         path.normpath(
             path.join(getcwd(), "app/config/user_conf.yaml")
         )
     )
 
-sys_conf = yml.read_yaml_file(
+sys_conf = file_manager.read_yaml_file(
         path.normpath(
             path.join(getcwd(), "app/config/system_conf.yaml")
         )
