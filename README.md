@@ -13,28 +13,14 @@ b) Create and start virtual environment using python's virtualenv
 c) Install requirements from requirements.txt file using `pip install -r requirements.txt` 
 
 ### Step 2: Configuration
-a) You would need to set up your log in information which consist of your
-email address and password. 
+#### Email Configuration
+1. Set up your log in information which consist of your email address and password. To configure, go to `app/config/user_conf.yaml` and set fields: `EMAIL_ADDRESS` and `PASSWORD`.
+2. Configure the mail server you plan to use. To configure, go to `app/config/user_conf.yaml` and set fields: `SMTP_SERVER` and `SMTP_PORT`. Note that currently only SMTP SSL is supported. 
+3. Set the location of your email template. A default email template is defined in `app/message_data/email/email.json`. Note that the location of the template can be changed.  
 
-To configure go to `app/config/user_conf.yaml` and set fields: `EMAIL_ADDRESS` and `PASSWORD`.
-
-b) You would need to set up your mailing file, which consist of the recipient
-email address, your email address, the subject and the message you would like
-to go with the email.
-
-To configure go to `app > message_data > email > email.json` and set 
-fields: `to`, `from`, `subject`, and `body`.  
-Note: the from field can be specified in two ways: `email address` or `name <email address>`.
-
-c) You would have to set up the files that you would be looking for, which
-is basically setting regular expressions to find the files that you would
-want the program to find.
-
-To configure go to `app/config/user_conf.yaml` and set the field: `WATCH_EXTS`.
-
-d)You would have to set the folder path that you want to be watched.
-
-To configure go to `app/config/user_conf.yaml` and set the field: `WATCH_PATH`.  
-
+#### Event Group Configuration
+1. Set up an Event Group in `app/config/user_conf.yaml`. A default group has been setup but it is advised that you change the attribute values under `EVENT_GROUPS`.  
+Note: `WATCH_EXTS` is a list of regular expressions that should match the name of the files you want the application should be triggered by. 
 ### Step 3: Run the application
 a) Navigate to the application root folder `auto-mailer` and run the application using `python run.py`
+
