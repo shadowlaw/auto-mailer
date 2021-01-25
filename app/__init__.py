@@ -17,9 +17,11 @@ sys_conf = file_manager.read_yaml_file(
 sys_conf['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'] = getattr(logging, sys_conf['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'].upper(), 20)
 
 if not path.exists(sys_conf['LOGGING_CONFIG']['LOG_LOCATION']):
-    mkdir(path.dirname(sys_conf['LOGGING_CONFIG']['LOG_LOCATION']))
+    if not path.exists(path.dirname(sys_conf['LOGGING_CONFIG']['LOG_LOCATION'])):
+        mkdir(path.dirname(sys_conf['LOGGING_CONFIG']['LOG_LOCATION']))
     with open(sys_conf['LOGGING_CONFIG']['LOG_LOCATION'], 'w'):
         pass
+
 
 
 # Adding properties to config dictionary
