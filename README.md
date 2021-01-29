@@ -1,4 +1,4 @@
-#Auto Mailer
+# Auto Mailer
 A python script that sends a predefined email once a file has been created in a specified location.
 This script is aimed at reducing human involvement in sending mundane emails with attachments. 
 
@@ -20,7 +20,7 @@ shows the fields to be edited and describes how they are used.
 |  Field |  Type |  Description |
 |---|---|---|
 |  EVENT_GROUPS |  array |  An array of object for grouping event. |
-|  WATCH_EXTS | array  |  An array of regular expressions that describe the file that the event group should be triggered by. All regular expressions should be prefixed with .*  |
+|  WATCH_EXTS | array  |  An array of regular expressions that describe the file that the event group should be triggered by. All regular expressions should be prefixed with `.*`  |
 |  WATCH_PATH |  string |  The full path to the folder that the script should watch for the event group. |
 |  MAIL_DATA_PATH |  string |  The full path to the email template file. |
 |  SMTP_SERVER |  string |  URL or IP address of the SMTP server for your email address. |
