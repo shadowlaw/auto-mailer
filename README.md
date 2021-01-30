@@ -70,3 +70,5 @@ Note: `WATCH_EXTS` is a list of regular expressions that should match the name o
 ### Step 3: Run the application
 a) Navigate to the application root folder `auto-mailer` and run the application using `python run.py`
 
+## Install and Run with Docker
+See wiki to for docker [installation](https://github.com/shadowlaw/auto-mailer/wiki/Installation)
