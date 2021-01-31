@@ -1,14 +1,14 @@
 from .FileEventHandler import FileEventHandler
 from ..Emailer import Emailer
-from app.app import APP_CONFIG
-from json import load
+from app import APP_CONFIG
 from ..Logger import Logger
-from config.config import LOGGING_CONFIG
+from ..utils.file_manager import read_json_file
 
-class DefaultFileEventHandler(FileEventHandler):
 
-    def __init__(self, FILE_EXTS=None):
-        self.logger = Logger(LOGGING_CONFIG['LOG_LOCATION'])
+class EmailProcessor(FileEventHandler):
+
+    def __init__(self, email_data_location, FILE_EXTS=None):
+        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], name=__name__)
         self.logger.log.info("DefaultFileHandler initializing")
         
         if FILE_EXTS is not None:
@@ -16,15 +16,13 @@ class DefaultFileEventHandler(FileEventHandler):
         else:
             super().__init__()
 
+        self.email_data_location = email_data_location
+
         self.logger.log.info("DefaultFileHandler initialized")
 
     def process(self, event):
-
-        msg_data = dict()
-
         try:
-            with open(APP_CONFIG["EMAIL_CONFIG"]["MAIL_DATA_PATH"],'r') as msg_fp:
-                msg_data = load(msg_fp)
+            msg_data = read_json_file(self.email_data_location)
         except KeyError as e:
             self.logger.log.error("Unable to locate key: {}".format(e))
             # send email with error message?
@@ -40,10 +38,7 @@ class DefaultFileEventHandler(FileEventHandler):
         try:
             emailer = Emailer(APP_CONFIG["SMTP_CONFIG"], APP_CONFIG["EMAIL_CONFIG"], msg_data)
             emailer.send_mail()
-            del emailer
-            del msg_data
         except KeyError as e:
             self.logger.log.error("Unable to locate key: {}".format(e))
         except Exception as e:
             self.logger.log.error("Emailer error: {}".format(e))
-        
