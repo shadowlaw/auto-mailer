@@ -7,6 +7,7 @@ from app import APP_CONFIG
 
 from watchdog.events import RegexMatchingEventHandler
 
+
 class FileEventHandler(RegexMatchingEventHandler, ABC):
 
     def __init__(self, FILE_EXTS = [r".*"]):
