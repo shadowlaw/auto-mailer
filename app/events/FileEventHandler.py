@@ -1,6 +1,6 @@
 from os.path import getsize
 from time import sleep
-from abc import ABC, abstractclassmethod
+from abc import ABC, abstractmethod
 from re import compile, I
 from ..Logger import Logger
 from app import APP_CONFIG
@@ -45,5 +45,5 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
     def __is_list(self, obj):
         return type(obj) == list
         
-    @abstractclassmethod
+    @abstractmethod
     def process(self, event):pass
