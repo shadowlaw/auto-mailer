@@ -12,7 +12,7 @@ class FolderWatcher:
 
     def __init__(self, event_groups):
         self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], name=__name__)
-        self.logger.log.info("Watcher initialized")
+        self.logger.log.info("Watcher initializing")
         self.__event_handler_groups = self.__create_event_handlers(event_groups)
         self.__event_observer = Observer()
         self.logger.log.info("Watcher initialized")
