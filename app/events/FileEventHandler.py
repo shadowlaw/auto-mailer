@@ -10,7 +10,7 @@ from watchdog.events import RegexMatchingEventHandler
 class FileEventHandler(RegexMatchingEventHandler, ABC):
 
     def __init__(self, FILE_EXTS = [r".*"]):
-        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], name=__name__)
+        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], loglevel=APP_CONFIG['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'], name=__name__)
 
         if not self.__is_list(FILE_EXTS):
             raise TypeError("TypeError: {} is of type {}, not list".format(FILE_EXTS, type(FILE_EXTS)))
