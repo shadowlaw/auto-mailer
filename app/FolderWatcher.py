@@ -1,6 +1,7 @@
 import time
 
 from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver
 from .events.EmailProcessor import EmailProcessor
 from app.Logger import Logger
 from app import APP_CONFIG
@@ -14,7 +15,7 @@ class FolderWatcher:
         self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], loglevel=APP_CONFIG['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'], name=__name__)
         self.logger.log.info("Watcher initializing")
         self.__event_handler_groups = self.__create_event_handlers(event_groups)
-        self.__event_observer = Observer()
+        self.__event_observer = self.__get_observer(APP_CONFIG['WATCHER_CONFIG']['DEFAULT_OBSERVER_TYPE'])
         self.logger.log.info("Watcher initialized")
 
     def run(self):
@@ -86,3 +87,13 @@ class FolderWatcher:
         except KeyError as e:
             self.logger.log.debug("Unable to find field {}".format(e.args[0]))
             return False
+
+    def __get_observer(self, option):
+        if option is not None and option.lower() == 'polling':
+            return PollingObserver(timeout=3)
+        elif option is not None and option.lower() == 'native':
+            return Observer()
+        else:
+            self.logger.log.debug('Unknown observer option {} specified'.format(option))
+
+        return Observer()
