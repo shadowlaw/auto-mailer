@@ -8,7 +8,7 @@ from ..utils.file_manager import read_json_file
 class EmailProcessor(FileEventHandler):
 
     def __init__(self, email_data_location, FILE_EXTS=None):
-        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], name=__name__)
+        self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], loglevel=APP_CONFIG['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'], name=__name__)
         self.logger.log.info("DefaultFileHandler initializing")
         
         if FILE_EXTS is not None:

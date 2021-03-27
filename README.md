@@ -22,6 +22,7 @@ shows the fields to be edited and describes how they are used.
 |  EVENT_GROUPS |  array |  An array of object for grouping event. |
 |  WATCH_EXTS | array  |  An array of regular expressions that describe the file that the event group should be triggered by. All regular expressions should be prefixed with `.*`  |
 |  WATCH_PATH |  string |  The full path to the folder that the script should watch for the event group. |
+|  DEFAULT_OBSERVER_TYPE  |  string  |  The default observer type for all watched folders. Set to polling or native. This options will default to native if not set.  See [Watch Folder Content Detection](https://github.com/shadowlaw/auto-mailer/wiki/Watch-Folder-Content-Detection) page for more details  |
 |  MAIL_DATA_PATH |  string |  The full path to the email template file. |
 |  SMTP_SERVER |  string |  URL or IP address of the SMTP server for your email address. |
 |  SMTP_PORT |  integer |  The SMTP server port number. |
