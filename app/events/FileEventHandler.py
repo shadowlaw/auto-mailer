@@ -19,14 +19,24 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
 
     def on_created(self, event):
         self.logger.log.info("Detected file {}".format(event.src_path))
-        file_Size = -1
-        
-        while file_Size != getsize(event.src_path):
-            file_Size = getsize(event.src_path)
-            sleep(1)
         self.logger.log.info("Processing file: {}".format(event.src_path))
-        self.process(event)
-        self.logger.log.info("Processed file: {}".format(event.src_path))
+
+        file_Size = -1
+        uploaded = False
+
+        try:
+            while file_Size != getsize(event.src_path):
+                file_Size = getsize(event.src_path)
+                sleep(1)
+            uploaded = True
+        except FileNotFoundError as e:
+            self.logger.log.error(e.strerror)
+
+        if uploaded:
+            self.process(event)
+            self.logger.log.info("Processed file: {}".format(event.src_path))
+        else:
+            self.logger.log.info("Unable to Process file: {}".format(event.src_path))
 
     @property
     def regexes(self):
