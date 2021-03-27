@@ -6,8 +6,9 @@ WATCHER_CONFIG:
       MAIL_DATA_PATH: app/assets/message_data/email/email.json
   DEFAULT_OBSERVER_TYPE: ~ # observer type for all watch folders. Set to polling or native. This options will default to native if not set
 SMTP_CONFIG:
-  SMTP_SERVER: smtp.google.com
-  SMTP_PORT: 465 #SSL PORT
+  SMTP_SERVER: smtp.gmail.com
+  SMTP_PORT: 465
+  SMTP_SSL: True
 EMAIL_CONFIG:
   EMAIL_ADDRESS: ~ # your email address
   PASSWORD: ~ # your password
