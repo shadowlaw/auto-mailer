@@ -15,7 +15,13 @@ class FolderWatcher:
         self.logger = Logger(APP_CONFIG['LOGGING_CONFIG']['LOG_LOCATION'], loglevel=APP_CONFIG['LOGGING_CONFIG']['DEFAULT_LOG_LEVEL'], name=__name__)
         self.logger.log.info("Watcher initializing")
         self.__event_handler_groups = self.__create_event_handlers(event_groups)
-        self.__event_observer = self.__get_observer(APP_CONFIG['WATCHER_CONFIG']['DEFAULT_OBSERVER_TYPE'])
+        try:
+            self.__event_observer = self.__get_observer(APP_CONFIG['WATCHER_CONFIG']['DEFAULT_OBSERVER_TYPE'])
+        except KeyError as e:
+            self.logger.log.debug("Optional value {} not set.".format(str(e)))
+            self.logger.log.debug('Defaulting to native observer')
+            self.__event_observer = Observer()
+
         self.logger.log.info("Watcher initialized")
 
     def run(self):

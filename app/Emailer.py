@@ -73,7 +73,14 @@ class Emailer:
         return self.__message
 
     def send_mail(self):
-        with smtplib.SMTP_SSL(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"]) as server:
-            server.login(self.__user_details["EMAIL_ADDRESS"], self.__user_details["PASSWORD"])
-            server.sendmail(self.__sender, self.__reciever, self.__message.as_string())
-
+        timeout = 60
+        try:
+            if self.__smtpObj['SMTP_SSL']:
+                server = smtplib.SMTP_SSL(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"], timeout=timeout)
+            else:
+                server = smtplib.SMTP(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"], timeout=timeout)
+        except KeyError:
+            server = smtplib.SMTP(self.__smtpObj["SMTP_SERVER"], self.__smtpObj["SMTP_PORT"])
+        server.login(self.__user_details["EMAIL_ADDRESS"], self.__user_details["PASSWORD"])
+        server.sendmail(self.__sender, self.__reciever, self.__message.as_string())
+        server.close()

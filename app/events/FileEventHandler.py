@@ -30,7 +30,7 @@ class FileEventHandler(RegexMatchingEventHandler, ABC):
                 sleep(1)
             uploaded = True
         except FileNotFoundError as e:
-            self.logger.log.error(e.strerror)
+            self.logger.log.error(str(e))
 
         if uploaded:
             self.process(event)
