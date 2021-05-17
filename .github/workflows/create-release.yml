@@ -1,0 +1,33 @@
+name: create release from merge to master
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v1
+      - name: Create Release
+        env:
+          TAG: v$(cat VERSION.txt)
+          GIT_API_TOKEN: ${{ secrets.GIT_API_TOKEN }}
+          CHANGE_LOG: $(sed \':a;N;$!ba;s/\n/\\r\\n/g\' RELEASENOTES.md)
+        run: |
+          if [[ -z $TAG ]] || [[ -z $GIT_API_TOKEN ]] || [[ -z $CHANGE_LOG ]];
+          then
+            exit 1
+          fi
+
+          $STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token $GIT_API_TOKEN" \
+          https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
+          -d "{\"tag_name\":\"$TAG\", \"name\":\"$TAG\", \"body\": \"$CHANGE_LOG\"}")
+
+          if test $STATUSCODE -ne 201; then
+              exit 2
+          fi
