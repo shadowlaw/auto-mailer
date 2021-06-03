@@ -8,4 +8,7 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN apt-get update -y
+RUN apt-get install -y tzdata
+
 ENTRYPOINT python run.py
