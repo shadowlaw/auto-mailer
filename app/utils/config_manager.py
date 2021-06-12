@@ -5,11 +5,20 @@ from app.utils import file_manager
 
 
 def __getUserConfig():
-    return __read_config_file(path.join(getcwd(), "app/config/user_conf.yaml"))
+    try:
+        return __read_config_file(path.join(getcwd(), "app/config/user_conf.yaml"))
+    except FileNotFoundError as e:
+        file_manager.copy("app/data/defaults/user_conf.yaml", "app/config/user_conf.yaml")
+        return __read_config_file(path.join(getcwd(), "app/config/user_conf.yaml"))
 
 
 def __getSystemConfig():
-    sys_config = __read_config_file(path.join(getcwd(), "app/config/system_conf.yaml"))
+    try:
+        sys_config = __read_config_file(path.join(getcwd(), "app/config/system_conf.yaml"))
+    except FileNotFoundError as e:
+        file_manager.copy("app/data/defaults/system_conf.yaml", "app/config/system_conf.yaml")
+        sys_config = __read_config_file(path.join(getcwd(), "app/config/system_conf.yaml"))
+
     __prepareLogging(sys_config)
     return sys_config
 
