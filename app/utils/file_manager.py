@@ -4,7 +4,7 @@ from json import load
 
 def read_yaml_file(path):
     with open(path, 'r') as fptr:
-        return yaml.load(fptr, Loader=yaml.FullLoader)
+        return yaml.safe_load(fptr)
 
 
 def read_json_file(path):
