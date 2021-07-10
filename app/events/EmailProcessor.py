@@ -1,5 +1,5 @@
 from .FileEventHandler import FileEventHandler
-from ..Emailer import Emailer
+from app.notifier.Emailer import Emailer
 from app import APP_CONFIG
 from ..Logger import Logger
 from ..utils.file_manager import read_json_file
