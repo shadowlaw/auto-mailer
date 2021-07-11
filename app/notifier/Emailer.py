@@ -18,7 +18,7 @@ class Emailer:
             self.__user_details = user_details
         if bool(msg):
 
-            msg['body'] = Message(msg['body'])
+            msg['body'] = Message(msg['body'], msg)
             self.set_message(msg)
 
     def set_user_details(self, user_details):
