@@ -12,16 +12,16 @@ jobs:
         uses: actions/checkout@v1
       - name: Create Release
         env:
-          TAG: v$(cat VERSION.txt)
           GIT_API_TOKEN: ${{ secrets.GIT_API_TOKEN }}
-          CHANGE_LOG: $(sed \':a;N;$!ba;s/\n/\\r\\n/g\' RELEASENOTES.md)
         run: |
+          export TAG=v$(cat VERSION.txt)
+          export CHANGE_LOG=$(sed ':a;N;$!ba;s/\n/\\r\\n/g' RELEASENOTES.md)
           if [[ -z $TAG ]] || [[ -z $GIT_API_TOKEN ]] || [[ -z $CHANGE_LOG ]];
           then
             exit 1
           fi
 
-          $STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" \
+          export STATUSCODE=$(curl --silent --output /dev/stderr --write-out %{http_code} \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token $GIT_API_TOKEN" \
