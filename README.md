@@ -11,7 +11,7 @@ b) Create and start virtual environment using python's virtualenv (optional)
 c) Install requirements from requirements.txt file using `pip install -r requirements.txt` 
 
 ### Step 2: Configuration
-Two configuration files are available to be edited: user_conf.yaml and system_conf.yaml. Each file and their fields
+Two configuration files are available to be edited: user_conf.yaml and system_conf.yaml. Each file and its fields
 attached to them are described below.
 
 The `app/config/user_conf.yaml` file needs  to be edited to allow this script to function properly. The following table 
@@ -40,7 +40,7 @@ for the script to be used. The following table shows the fields that can be edit
 |  DEFAULT_LOG_LEVEL |  string |  The scripts default log level. Corresponds to the Python logging module log levels.|
  
 #### Email Configuration
-1. Set up your log in information which consist of your email address and password. To configure, go to `app/config/user_conf.yaml` and set fields: `EMAIL_ADDRESS` and `PASSWORD`.
+1. Set up your log-in information which consist of your email address and password. To configure, go to `app/config/user_conf.yaml` and set fields: `EMAIL_ADDRESS` and `PASSWORD`.
 2. Configure the mail server you plan to use. To configure, go to `app/config/user_conf.yaml` and set fields: `SMTP_SERVER` and `SMTP_PORT`. Note that currently only SMTP SSL is supported. 
 3. Set the location of your email template. A default email template is defined in `app/message_data/email/email.json`. Note that the location of the template can be changed.  
 
@@ -72,4 +72,7 @@ Note: `WATCH_EXTS` is a list of regular expressions that should match the name o
 a) Navigate to the application root folder `auto-mailer` and run the application using `python run.py`
 
 ## Install and Run with Docker
-See wiki to for docker [installation](https://github.com/shadowlaw/auto-mailer/wiki/Installation)
+See wiki for docker [installation](https://github.com/shadowlaw/auto-mailer/wiki/Installation#docker)
+
+## Docker Configuration
+See wiki for docker [config](https://github.com/shadowlaw/auto-mailer/wiki/Configuration#docekr-configuration)

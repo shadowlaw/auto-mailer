@@ -1,11 +1,12 @@
-import smtplib, ssl
-import email
+import smtplib
 
 from os.path import basename
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+from app.notifier.message.Message import Message
 
 
 class Emailer:
@@ -16,6 +17,8 @@ class Emailer:
         if bool(user_details):
             self.__user_details = user_details
         if bool(msg):
+
+            msg['body'] = Message(msg['body'], msg)
             self.set_message(msg)
 
     def set_user_details(self, user_details):
@@ -39,7 +42,7 @@ class Emailer:
         self.__message["From"] = self.__sender
         self.__message["To"] = self.__reciever
         self.__message["Subject"] = msg['subject']
-        self.__message.attach(MIMEText(msg['body'], "plain"))
+        self.__message.attach(MIMEText(msg['body'].message, "plain"))
 
         try:
             with open(msg['attachment'], "rb") as attachment:
