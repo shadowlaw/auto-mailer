@@ -1,9 +1,14 @@
 # Changelog
-## Features:
-- Support for non-SSL SMTP ports
-- Option to select a file detection method
+# Feadures
+- Email body file name placeholder
+- Email body date placeholder
+- Auto-generate files on first run
 
-## Fixes
-- Script freezes when the file being processed is moved
-- Default log level not being used
-- Duplicate folder watcher initialization log
+### Docker
+- Allow Timezone to be set as environment variable
+
+# Fixes
+- Fix yaml security
+
+### Docker
+- Default configurations do not appear in docker volume
